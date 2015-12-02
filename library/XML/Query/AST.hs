@@ -36,8 +36,7 @@ deriving instance Functor Nodes
 
 data Node a =
   NodeTag (Tag a) |
-  NodeText (Text a) |
-  NodeSpace (Text a)
+  NodeText (Text a)
 
 deriving instance Functor Node
 

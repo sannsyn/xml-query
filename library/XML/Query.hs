@@ -123,7 +123,3 @@ nodeTag =
 nodeText :: Text a -> Node a
 nodeText =
   hoistAlt AST.NodeText
-
-nodeSpace :: Text a -> Node a
-nodeSpace =
-  hoistAlt AST.NodeSpace
