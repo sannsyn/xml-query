@@ -5,12 +5,12 @@ version:
 synopsis:
   A parser-agnostic declarative API for querying XML-documents
 description:
-  Provides a free-monad-based API for defining the destructuring of XML-documents,
+  Provides a free-alternative-functor-based API for defining the destructuring of XML-documents,
   while delegating the actual parsing process to outer APIs.
   Thus it allows the users to implement parser-agnostic XML-parsing specifications,
   with the intent of later interpreting them with specific parsers.
   .
-  Note that this API does not require any knowledge of the theory behind free monads by the end-users.
+  Note that this API does not require any knowledge of the theory behind by the end-users.
 category:
   Data, XML, Parsing
 homepage:

@@ -7,7 +7,7 @@ where
 
 -- base-prelude
 -------------------------
-import BasePrelude as Exports hiding (fail)
+import BasePrelude as Exports hiding (fail, Alt)
 
 -- transformers
 -------------------------
@@ -29,5 +29,5 @@ import Success.Pure as Exports (Success)
 
 -- free
 -------------------------
-import Control.Monad.Free as Exports
-import Control.Monad.Free.TH as Exports
+import Control.Alternative.Free as Exports
+import Control.Monad.Free as Exports hiding (Pure)

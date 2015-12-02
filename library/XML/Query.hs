@@ -12,14 +12,15 @@ import qualified XML.Query.AST as AST
 -- |
 -- Parser in the context of a textual value.
 type Text =
-  Free AST.Text
+  Alt AST.Text
 
 -- |
--- Lifts an arbitrary textual parser function to a text-value parser.
+-- Lifts an arbitrary textual parser function to the text-value parser.
 -- 
 -- Provides a doorway for composition with such libraries as \"parsec\" or \"attoparsec\".
-makeFreeCon_ 'AST.Text
 text :: (Prelude.Text -> Either Prelude.Text a) -> Text a
+text =
+  liftAlt . AST.Text
 
 -- ** Derivatives
 -------------------------
@@ -35,13 +36,15 @@ textValue =
 -------------------------
 
 type Tag =
-  Free AST.Tag
+  Alt AST.Tag
 
-makeFreeCon_ 'AST.TagNameText
 tagNameText :: Text a -> Tag a
+tagNameText =
+  hoistAlt AST.TagNameText
 
-makeFreeCon_ 'AST.TagAttr
 tagAttr :: Attr a -> Tag a
+tagAttr =
+  hoistAlt AST.TagAttr
 
 -- ** Derivatives
 -------------------------
@@ -60,8 +63,54 @@ tagNameIs expected =
 -------------------------
 
 type Attr =
-  Free AST.Attr
+  Alt AST.Attr
+
+attrNameText :: Text a -> Attr a
+attrNameText =
+  hoistAlt AST.AttrNameText
+
+attrValueText :: Text a -> Attr a
+attrValueText =
+  hoistAlt AST.AttrValueText
+
+-- ** Derivatives
+-------------------------
+
+attrNameIs :: Prelude.Text -> Attr ()
+attrNameIs expected =
+  attrNameText (text textParserFn)
+  where
+    textParserFn actual =
+      if actual == expected
+        then Right ()
+        else Left ("attrNameIs: The actual name \"" <> actual <> "\" does not equal the expected \"" <> expected <> "\"")
 
 
 -- * Nodes
 -------------------------
+
+type Nodes =
+  Alt AST.Nodes
+
+node :: Node a -> Nodes a
+node =
+  hoistAlt AST.NodesNode
+
+
+-- * Node
+-------------------------
+
+type Node =
+  Alt AST.Node
+
+nodeTag :: Tag a -> Node a
+nodeTag =
+  hoistAlt AST.NodeTag
+
+nodeText :: Text a -> Node a
+nodeText =
+  hoistAlt AST.NodeText
+
+nodeSpace :: Text a -> Node a
+nodeSpace =
+  hoistAlt AST.NodeSpace

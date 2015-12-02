@@ -7,37 +7,37 @@ import XML.Query.Prelude hiding (Text)
 import qualified XML.Query.Prelude as Prelude
 
 
-data Text x =
-  forall a. Text (Prelude.Text -> Either Prelude.Text a) (a -> x)
+data Text a =
+  Text (Prelude.Text -> Either Prelude.Text a)
 
 deriving instance Functor Text
 
 
-data Tag x =
-  forall a. TagNameText (Free Text a) (a -> x) |
-  forall a. TagAttr (Free Attr a) (a -> x) |
-  forall a. TagNodes (Free Nodes a) (a -> x)
+data Tag a =
+  TagNameText (Text a) |
+  TagAttr (Attr a) |
+  TagNodes (Nodes a)
 
 deriving instance Functor Tag
 
 
-data Attr x =
-  forall a. AttrNameText (Free Text a) (a -> x) |
-  forall a. AttrValueText (Free Text a) (a -> x)
+data Attr a =
+  AttrNameText (Text a) |
+  AttrValueText (Text a)
 
 deriving instance Functor Attr
 
 
-data Nodes x =
-  forall a. NodesNode (Free Node a) (a -> x)
+data Nodes a =
+  NodesNode (Node a)
 
 deriving instance Functor Nodes
 
 
-data Node x =
-  forall a. NodeTag (Free Tag a) (a -> x) |
-  forall a. NodeText (Free Text a) (a -> x) |
-  forall a. NodeSpace (Free Text a) (a -> x)
+data Node a =
+  NodeTag (Tag a) |
+  NodeText (Text a) |
+  NodeSpace (Text a)
 
 deriving instance Functor Node
 
