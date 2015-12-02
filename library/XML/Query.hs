@@ -89,6 +89,15 @@ attrNameIs expected =
         then Right ()
         else Left ("attrNameIs: The actual name \"" <> actual <> "\" does not equal the expected \"" <> expected <> "\"")
 
+attrValueIs :: Prelude.Text -> Attr ()
+attrValueIs expected =
+  attrValueText (text textParserFn)
+  where
+    textParserFn actual =
+      if actual == expected
+        then Right ()
+        else Left ("attrValueIs: The actual name \"" <> actual <> "\" does not equal the expected \"" <> expected <> "\"")
+
 
 -- * Nodes
 -------------------------
