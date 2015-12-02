@@ -105,8 +105,8 @@ attrValueIs expected =
 type Nodes =
   Alt AST.Nodes
 
-node :: Node a -> Nodes a
-node =
+nodesNode :: Node a -> Nodes a
+nodesNode =
   hoistAlt AST.NodesNode
 
 
