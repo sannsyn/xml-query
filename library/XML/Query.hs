@@ -46,6 +46,10 @@ tagAttr :: Attr a -> Tag a
 tagAttr =
   hoistAlt AST.TagAttr
 
+tagNodes :: Nodes a -> Tag a
+tagNodes =
+  hoistAlt AST.TagNodes
+
 -- ** Derivatives
 -------------------------
 
