@@ -118,24 +118,19 @@ attrValueIs expected =
 -- * Nodes
 -------------------------
 
+-- |
+-- A consuming sequential monadic parser of tag's nodes.
 type Nodes =
-  Alt AST.Nodes
+  Free AST.Nodes
 
-nodesNode :: Node a -> Nodes a
-nodesNode =
-  liftAlt . AST.NodesNode
+nodesTag :: Tag a -> Nodes a
+nodesTag q =
+  liftF (AST.NodesTag q id)
 
+nodesText :: Text a -> Nodes a
+nodesText q =
+  liftF (AST.NodesText q id)
 
--- * Node
--------------------------
-
-type Node =
-  Alt AST.Node
-
-nodeTag :: Tag a -> Node a
-nodeTag =
-  liftAlt . AST.NodeTag
-
-nodeText :: Text a -> Node a
-nodeText =
-  liftAlt . AST.NodeText
+nodesAny :: Nodes ()
+nodesAny =
+  liftF (AST.NodesAny () id)
