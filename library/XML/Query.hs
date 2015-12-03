@@ -42,10 +42,18 @@ tagNameText :: Text a -> Tag a
 tagNameText =
   liftAlt . AST.TagNameText
 
+-- |
+-- Parses one of tag's attributes without any regard to order.
 tagAttr :: Attr a -> Tag a
 tagAttr =
   liftAlt . AST.TagAttr
 
+-- |
+-- Parses all of tag's nodes.
+-- 
+-- Can be used multiple times,
+-- thus allowing for parallel parsing of tag's child-nodes.
+-- Naturally this will result in traversing the tag's nodes multiple times.
 tagNodes :: Nodes a -> Tag a
 tagNodes =
   liftAlt . AST.TagNodes
@@ -69,10 +77,14 @@ tagNameIs expected =
 type Attr =
   Alt AST.Attr
 
+-- |
+-- Parses the attribute's name using the provided textual parser.
 attrNameText :: Text a -> Attr a
 attrNameText =
   liftAlt . AST.AttrNameText
 
+-- |
+-- Parses the attribute's value using the provided textual parser.
 attrValueText :: Text a -> Attr a
 attrValueText =
   liftAlt . AST.AttrValueText
@@ -80,6 +92,8 @@ attrValueText =
 -- ** Derivatives
 -------------------------
 
+-- |
+-- A parser, which succeeds if the attribute's name matches the provided value.
 attrNameIs :: Prelude.Text -> Attr ()
 attrNameIs expected =
   attrNameText (text textParserFn)
@@ -89,6 +103,8 @@ attrNameIs expected =
         then Right ()
         else Left ("attrNameIs: The actual name \"" <> actual <> "\" does not equal the expected \"" <> expected <> "\"")
 
+-- |
+-- A parser, which succeeds if the attribute's value matches the provided value.
 attrValueIs :: Prelude.Text -> Attr ()
 attrValueIs expected =
   attrValueText (text textParserFn)
