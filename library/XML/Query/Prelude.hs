@@ -15,10 +15,6 @@ import Control.Monad.Trans.State.Strict as Exports hiding (liftCallCC, liftCatch
 import Control.Monad.Trans.Reader as Exports hiding (liftCallCC, liftCatch)
 import Control.Monad.Trans.Class as Exports
 
--- bytestring
--------------------------
-import Data.ByteString as Exports (ByteString)
-
 -- text
 -------------------------
 import Data.Text as Exports (Text)

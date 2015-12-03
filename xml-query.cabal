@@ -1,7 +1,7 @@
 name:
   xml-query
 version:
-  0.4
+  0.4.0.1
 synopsis:
   A parser-agnostic declarative API for querying XML-documents
 description:
@@ -54,11 +54,7 @@ library
     XML.Query
   build-depends:
     --
-    unordered-containers == 0.2.*,
-    vector >= 0.10 && < 0.12,
-    scientific == 0.3.*,
     text == 1.*,
-    bytestring == 0.10.*,
     --
     free >= 4.12 && < 5,
     success == 0.2.*,
