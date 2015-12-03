@@ -40,15 +40,15 @@ type Tag =
 
 tagNameText :: Text a -> Tag a
 tagNameText =
-  hoistAlt AST.TagNameText
+  liftAlt . AST.TagNameText
 
 tagAttr :: Attr a -> Tag a
 tagAttr =
-  hoistAlt AST.TagAttr
+  liftAlt . AST.TagAttr
 
 tagNodes :: Nodes a -> Tag a
 tagNodes =
-  hoistAlt AST.TagNodes
+  liftAlt . AST.TagNodes
 
 -- ** Derivatives
 -------------------------
@@ -71,11 +71,11 @@ type Attr =
 
 attrNameText :: Text a -> Attr a
 attrNameText =
-  hoistAlt AST.AttrNameText
+  liftAlt . AST.AttrNameText
 
 attrValueText :: Text a -> Attr a
 attrValueText =
-  hoistAlt AST.AttrValueText
+  liftAlt . AST.AttrValueText
 
 -- ** Derivatives
 -------------------------
@@ -107,7 +107,7 @@ type Nodes =
 
 nodesNode :: Node a -> Nodes a
 nodesNode =
-  hoistAlt AST.NodesNode
+  liftAlt . AST.NodesNode
 
 
 -- * Node
@@ -118,8 +118,8 @@ type Node =
 
 nodeTag :: Tag a -> Node a
 nodeTag =
-  hoistAlt AST.NodeTag
+  liftAlt . AST.NodeTag
 
 nodeText :: Text a -> Node a
 nodeText =
-  hoistAlt AST.NodeText
+  liftAlt . AST.NodeText
