@@ -58,6 +58,13 @@ tagNodes :: Nodes a -> Tag a
 tagNodes =
   liftAlt . AST.TagNodes
 
+-- |
+-- Parses a single node,
+-- located anywhere among the tag's children.
+tagNode :: Node a -> Tag a
+tagNode =
+  liftAlt . AST.TagNode
+
 -- ** Derivatives
 -------------------------
 
@@ -118,12 +125,14 @@ attrValueIs expected =
 -- * Nodes
 -------------------------
 
+-- |
+-- A consuming sequential monadic parser of tag's nodes.
 type Nodes =
-  Alt AST.Nodes
+  Free AST.Nodes
 
 nodesNode :: Node a -> Nodes a
-nodesNode =
-  liftAlt . AST.NodesNode
+nodesNode q =
+  liftF (AST.NodesNode q id)
 
 
 -- * Node
