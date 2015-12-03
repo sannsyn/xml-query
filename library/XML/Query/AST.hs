@@ -16,7 +16,7 @@ deriving instance Functor Text
 data Tag a =
   TagNameText (Alt Text a) |
   TagAttr (Alt Attr a) |
-  TagNodes (Free Nodes a)
+  TagNodes (Alt Nodes a)
 
 deriving instance Functor Tag
 
@@ -29,9 +29,9 @@ deriving instance Functor Attr
 
 
 data Nodes a =
-  forall x. NodesTag (Alt Tag x) (x -> a) |
-  forall x. NodesText (Alt Text x) (x -> a) |
-  forall x. NodesAny x (x -> a)
+  NodesTag (Alt Tag a) |
+  NodesText (Alt Text a) |
+  NodesAny a
 
 deriving instance Functor Nodes
 
