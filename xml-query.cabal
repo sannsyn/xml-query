@@ -1,7 +1,7 @@
 name:
   xml-query
 version:
-  0.4.0.1
+  0.4.1
 synopsis:
   A parser-agnostic declarative API for querying XML-documents
 description:

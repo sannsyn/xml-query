@@ -125,6 +125,11 @@ nodesNode :: Node a -> Nodes a
 nodesNode =
   liftAlt . AST.NodesNode
 
+nodesNodeAnywhere :: Node a -> Nodes a
+nodesNodeAnywhere node =
+  fix $ \loop ->
+    nodesNode node <|> (nodesNode (pure ()) *> loop)
+
 
 -- * Node
 -------------------------
