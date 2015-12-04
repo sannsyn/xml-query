@@ -118,17 +118,23 @@ attrValueIs expected =
 -- * Nodes
 -------------------------
 
+-- |
+-- A sequential backtracking parser of nodes.
 type Nodes =
   Alt AST.Nodes
 
-nodesNode :: Node a -> Nodes a
-nodesNode =
+-- |
+-- Parses the next node.
+nodesImmediateNode :: Node a -> Nodes a
+nodesImmediateNode =
   liftAlt . AST.NodesNode
 
-nodesNodeAnywhere :: Node a -> Nodes a
-nodesNodeAnywhere node =
+-- |
+-- Parses one of the following nodes.
+nodesEventualNode :: Node a -> Nodes a
+nodesEventualNode node =
   fix $ \loop ->
-    nodesNode node <|> (nodesNode (pure ()) *> loop)
+    nodesImmediateNode node <|> (nodesImmediateNode (pure ()) *> loop)
 
 
 -- * Node
