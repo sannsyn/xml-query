@@ -1,4 +1,4 @@
-module XML.Query.Prelude
+module XMLQuery.Prelude
 ( 
   module Exports,
 )
@@ -27,3 +27,4 @@ import Success.Pure as Exports (Success)
 -------------------------
 import Control.Alternative.Free as Exports
 import Control.Monad.Free as Exports hiding (Pure)
+import Control.Monad.Free.TH as Exports

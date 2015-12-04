@@ -1,10 +1,10 @@
 -- |
 -- An API for the implementation of interpreters.
-module XML.Query.AST
+module XMLQuery.AST
 where
 
-import XML.Query.Prelude hiding (Text)
-import qualified XML.Query.Prelude as Prelude
+import XMLQuery.Prelude hiding (Text)
+import qualified XMLQuery.Prelude as Prelude
 
 
 data Text a =

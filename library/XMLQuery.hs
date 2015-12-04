@@ -1,9 +1,9 @@
-module XML.Query
+module XMLQuery
 where
 
-import XML.Query.Prelude hiding (Text)
-import qualified XML.Query.Prelude as Prelude
-import qualified XML.Query.AST as AST
+import XMLQuery.Prelude hiding (Text)
+import qualified XMLQuery.Prelude as Prelude
+import qualified XMLQuery.AST as AST
 
 
 -- * Text

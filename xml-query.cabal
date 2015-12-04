@@ -1,7 +1,7 @@
 name:
   xml-query
 version:
-  0.8
+  0.9
 synopsis:
   A parser-agnostic declarative API for querying XML-documents
 description:
@@ -48,10 +48,10 @@ library
   default-language:
     Haskell2010
   other-modules:
-    XML.Query.Prelude
+    XMLQuery.Prelude
   exposed-modules:
-    XML.Query.AST
-    XML.Query
+    XMLQuery.AST
+    XMLQuery
   build-depends:
     --
     text == 1.*,
