@@ -32,43 +32,43 @@ textValue =
   text pure
 
 
--- * Tag
+-- * Element
 -------------------------
 
-type Tag =
-  Alt AST.Tag
+type Element =
+  Alt AST.Element
 
-tagNameText :: Text a -> Tag a
-tagNameText =
-  liftAlt . AST.TagNameText
-
--- |
--- Parses one of tag's attributes without any regard to order.
-tagAttr :: Attr a -> Tag a
-tagAttr =
-  liftAlt . AST.TagAttr
+elementNameText :: Text a -> Element a
+elementNameText =
+  liftAlt . AST.ElementNameText
 
 -- |
--- Parses all of tag's nodes.
+-- Parses one of element's attributes without any regard to order.
+elementAttr :: Attr a -> Element a
+elementAttr =
+  liftAlt . AST.ElementAttr
+
+-- |
+-- Parses all of element's nodes.
 -- 
 -- Can be used multiple times,
--- thus allowing for parallel parsing of tag's child-nodes.
--- Naturally this will result in traversing the tag's nodes multiple times.
-tagNodes :: Nodes a -> Tag a
-tagNodes =
-  liftAlt . AST.TagNodes
+-- thus allowing for parallel parsing of element's child-nodes.
+-- Naturally this will result in traversing the element's nodes multiple times.
+elementNodes :: Nodes a -> Element a
+elementNodes =
+  liftAlt . AST.ElementNodes
 
 -- ** Derivatives
 -------------------------
 
-tagNameIs :: Prelude.Text -> Tag ()
-tagNameIs expected =
-  tagNameText (text textParserFn)
+elementNameIs :: Prelude.Text -> Element ()
+elementNameIs expected =
+  elementNameText (text textParserFn)
   where
     textParserFn actual =
       if actual == expected
         then Right ()
-        else Left ("tagNameIs: The actual name \"" <> actual <> "\" does not equal the expected \"" <> expected <> "\"")
+        else Left ("elementNameIs: The actual name \"" <> actual <> "\" does not equal the expected \"" <> expected <> "\"")
 
 
 -- * Attr
@@ -143,9 +143,9 @@ nodesEventualNode node =
 type Node =
   Alt AST.Node
 
-nodeTag :: Tag a -> Node a
-nodeTag =
-  liftAlt . AST.NodeTag
+nodeElement :: Element a -> Node a
+nodeElement =
+  liftAlt . AST.NodeElement
 
 nodeText :: Text a -> Node a
 nodeText =

@@ -13,12 +13,12 @@ data Text a =
 deriving instance Functor Text
 
 
-data Tag a =
-  TagNameText (Alt Text a) |
-  TagAttr (Alt Attr a) |
-  TagNodes (Alt Nodes a)
+data Element a =
+  ElementNameText (Alt Text a) |
+  ElementAttr (Alt Attr a) |
+  ElementNodes (Alt Nodes a)
 
-deriving instance Functor Tag
+deriving instance Functor Element
 
 
 data Attr a =
@@ -35,7 +35,7 @@ deriving instance Functor Nodes
 
 
 data Node a =
-  NodeTag (Alt Tag a) |
+  NodeElement (Alt Element a) |
   NodeText (Alt Text a)
 
 deriving instance Functor Node
