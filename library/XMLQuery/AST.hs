@@ -1,5 +1,6 @@
 -- |
 -- An API for the implementation of interpreters.
+-- Should only be used by the libraries, which implement the interpreters.
 module XMLQuery.AST
 where
 
