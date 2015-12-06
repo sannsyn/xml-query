@@ -57,6 +57,4 @@ library
     text == 1.*,
     --
     free >= 4.12 && < 5,
-    success == 0.2.*,
-    transformers >= 0.3 && < 0.5,
     base-prelude >= 0.1.19 && < 0.2
