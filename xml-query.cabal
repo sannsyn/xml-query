@@ -1,7 +1,7 @@
 name:
   xml-query
 version:
-  0.9.0.2
+  0.9.1
 synopsis:
   A parser-agnostic declarative API for querying XML-documents
 description:
@@ -62,4 +62,4 @@ library
     text == 1.*,
     --
     free >= 4.12 && < 5,
-    base-prelude >= 0.1.19 && < 0.2
+    base-prelude >= 0.1.19 && < 2
